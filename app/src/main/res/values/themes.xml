@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Newspedia" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.Newspedia" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/green_muda</item>
+        
     </style>
 
     <style name="Theme.Newspedia" parent="Base.Theme.Newspedia" />
