@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:srcCompat="@drawable/logo" />
+        android:src="@drawable/welcome_img" />
 
     <Button
         android:id="@+id/button"
