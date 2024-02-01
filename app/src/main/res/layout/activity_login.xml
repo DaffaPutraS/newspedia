@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/emailRegisterInputText"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="57dp"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/passRegisterInputText"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -70,12 +70,12 @@
         android:inputType="text"
         android:textColor="#999999"
         android:textColorHint="#999999"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintEnd_toEndOf="@+id/emailRegisterInputText"
+        app:layout_constraintStart_toStartOf="@+id/emailRegisterInputText"
+        app:layout_constraintTop_toBottomOf="@+id/emailRegisterInputText" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/loginBtn"
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -85,17 +85,17 @@
         android:textAllCaps="false"
         android:textColor="#040404"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
-        app:layout_constraintStart_toStartOf="@+id/editTextText3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintEnd_toEndOf="@+id/passRegisterInputText"
+        app:layout_constraintStart_toStartOf="@+id/passRegisterInputText"
+        app:layout_constraintTop_toBottomOf="@+id/passRegisterInputText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn">
 
         <TextView
             android:id="@+id/textView8"
@@ -108,7 +108,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/goSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
