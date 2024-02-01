@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green_muda">#B0D3B2</color>
+    <color name="warna_navbar">#757575</color>
 </resources>
