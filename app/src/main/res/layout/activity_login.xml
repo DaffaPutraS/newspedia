@@ -67,7 +67,7 @@
         android:ems="10"
         android:fontFamily="@font/glacial_reguler"
         android:hint="Password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="#999999"
         android:textColorHint="#999999"
         app:layout_constraintEnd_toEndOf="@+id/emailRegisterInputText"
