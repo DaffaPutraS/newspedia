@@ -2,6 +2,7 @@ package com.example.newspedia;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapterNewsList;
+    private ConstraintLayout clWorld,clScience, clSport,clPolitics,clCriminal,clAll;
     private RecyclerView recycleViewNews;
     private ArrayList<modelNews> newsList;
     // TODO: Rename parameter arguments, choose names that match
@@ -71,13 +73,30 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recycleViewNews = view.findViewById(R.id.recycleViewNews1);
+        clWorld = view.findViewById(R.id.clWorld);
+        clScience = view.findViewById(R.id.clScience);
+        clSport = view.findViewById(R.id.clSport);
+        clCriminal = view.findViewById(R.id.clCriminal);
+        clPolitics = view.findViewById(R.id.clPolitic);
+        clAll = view.findViewById(R.id.clAll);
+
         initView();
+
+        clWorld.setOnClickListener(v -> filterByCategory("#World"));
+        clScience.setOnClickListener(v -> filterByCategory("#Science"));
+        clSport.setOnClickListener(v -> filterByCategory("#Sports"));
+        clCriminal.setOnClickListener(v -> filterByCategory("#Criminal"));
+        clPolitics.setOnClickListener(v -> filterByCategory("#Politics"));
+        clAll.setOnClickListener(v -> filterByCategory("All"));
+
         return view;
+
     }
     private void initView(){
         if (recycleViewNews == null) {
             return;
         }
+
         recycleViewNews.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         newsList = new ArrayList<>();
         for (int i = 0; i < itemNews.posterItem.length; i++) {
@@ -91,12 +110,26 @@ public class HomeFragment extends Fragment {
 
             newsList.add(news);
         }
+
         ArrayList<modelNews> simplifiedNewsList = new ArrayList<>();
         for (modelNews news : newsList) {
             simplifiedNewsList.add(new modelNews(news.getName(), news.getCategory(), news.getDetail(), news.getDate(), news.getPoster()));
         }
 
+        // Set up the adapter and pass the original newsList
         adapterNewsList = new newsListAdapter(newsList);
+        recycleViewNews.setAdapter(adapterNewsList);
+    }
+    private void filterByCategory(String category) {
+        ArrayList<modelNews> filteredList = new ArrayList<>();
+        for (modelNews news : newsList) {
+            if (category.equals("All") || news.getCategory().equals(category)) {
+                filteredList.add(news);
+            }
+        }
+
+        // Update the adapter with filtered data
+        adapterNewsList = new newsListAdapter(filteredList);
         recycleViewNews.setAdapter(adapterNewsList);
     }
 

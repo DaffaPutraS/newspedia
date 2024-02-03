@@ -106,11 +106,11 @@
                         android:layout_height="match_parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout4"
+                            android:id="@+id/clCriminal"
                             android:layout_width="86dp"
                             android:layout_height="44dp"
-                            android:layout_marginStart="11dp"
-                            app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+                            android:layout_marginStart="15dp"
+                            app:layout_constraintStart_toEndOf="@+id/clSport"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
@@ -118,6 +118,47 @@
                                 android:layout_height="44dp"
                                 android:background="@color/grey_card"
                                 android:backgroundTint="@color/grey_card"
+                                app:cardCornerRadius="6dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scrollIndicators="bottom|none">
+
+                                    <TextView
+                                        android:id="@+id/textView55"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/glacial_reguler"
+                                        android:text="#Criminal"
+                                        android:textColor="#848484"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clSport"
+                            android:layout_width="86dp"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="11dp"
+                            app:layout_constraintStart_toEndOf="@+id/clScience"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="86dp"
+                                android:layout_height="44dp"
+                                android:background="@color/grey_card"
+                                android:backgroundTint="@color/grey_card"
+                                app:cardBackgroundColor="#FBEFEF"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -147,11 +188,11 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout3"
+                            android:id="@+id/clScience"
                             android:layout_width="86dp"
                             android:layout_height="44dp"
                             android:layout_marginStart="11dp"
-                            app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                            app:layout_constraintStart_toEndOf="@+id/clPolitic"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
@@ -186,11 +227,11 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout2"
+                            android:id="@+id/clPolitic"
                             android:layout_width="86dp"
                             android:layout_height="44dp"
                             android:layout_marginStart="11dp"
-                            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+                            app:layout_constraintStart_toEndOf="@+id/clWorld"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
@@ -225,7 +266,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout"
+                            android:id="@+id/clWorld"
                             android:layout_width="86dp"
                             android:layout_height="44dp"
                             android:layout_marginStart="19dp"
@@ -265,12 +306,13 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clAll"
                             android:layout_width="86dp"
                             android:layout_height="44dp"
-                            android:layout_marginStart="11dp"
+                            android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                            app:layout_constraintStart_toEndOf="@+id/clCriminal"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
