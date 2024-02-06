@@ -1,11 +1,12 @@
 package com.example.newspedia;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterNewsSuggestionList;
     private RecyclerView recycleViewSuggestion;
+    ConstraintLayout backDetailBtn ;
+
     private ArrayList<modelNews> newsList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,12 @@ public class DetailActivity extends AppCompatActivity {
         }
         adapterNewsSuggestionList = new suggestionListAdapter(newsList);
         recycleViewSuggestion.setAdapter(adapterNewsSuggestionList);
+
+        backDetailBtn = findViewById(R.id.BackDetailBtn);
+
+        backDetailBtn.setOnClickListener(view -> {
+            onBackPressed();
+        });
     }
 
 }

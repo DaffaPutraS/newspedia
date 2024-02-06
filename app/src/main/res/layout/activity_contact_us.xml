@@ -60,6 +60,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/glacial_blod"
             android:text="Contact Us"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
