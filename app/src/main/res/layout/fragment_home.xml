@@ -116,10 +116,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/bgCriminal"
                                 android:layout_width="86dp"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
+                                app:cardBackgroundColor="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -156,11 +156,11 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/bgSport"
+
                                 android:layout_width="86dp"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
-                                app:cardBackgroundColor="#FBEFEF"
+                                app:cardBackgroundColor="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -198,10 +198,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/bgScience"
+                                app:cardBackgroundColor="@color/grey_card"
                                 android:layout_width="86dp"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -237,10 +237,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                app:cardBackgroundColor="@color/grey_card"
+                                android:id="@+id/bgPolitics"
                                 android:layout_width="86dp"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -269,6 +269,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clWorld"
+
                             android:layout_width="86dp"
                             android:layout_height="44dp"
                             android:layout_marginStart="19dp"
@@ -276,10 +277,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/bgWorld"
+                                app:cardBackgroundColor="@color/grey_card"
                                 android:layout_width="86dp"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -318,10 +319,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/bgAll"
                                 android:layout_width="86dp"
+                                app:cardBackgroundColor="@color/hijau_tua"
                                 android:layout_height="44dp"
-                                android:background="@color/grey_card"
-                                android:backgroundTint="@color/grey_card"
                                 app:cardCornerRadius="6dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"

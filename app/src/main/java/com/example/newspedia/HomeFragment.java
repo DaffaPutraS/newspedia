@@ -1,8 +1,11 @@
 package com.example.newspedia;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapterNewsList;
     private ConstraintLayout clWorld,clScience, clSport,clPolitics,clCriminal,clAll;
+    private CardView bgWorld,bgScience,bgSport,bgPolitics,bgCriminal,bgAll;
     private RecyclerView recycleViewNews;
     private ArrayList<modelNews> newsList;
     // TODO: Rename parameter arguments, choose names that match
@@ -73,6 +77,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recycleViewNews = view.findViewById(R.id.recycleViewNews1);
+
+        initView();
         clWorld = view.findViewById(R.id.clWorld);
         clScience = view.findViewById(R.id.clScience);
         clSport = view.findViewById(R.id.clSport);
@@ -80,18 +86,44 @@ public class HomeFragment extends Fragment {
         clPolitics = view.findViewById(R.id.clPolitic);
         clAll = view.findViewById(R.id.clAll);
 
-        initView();
+        bgWorld = view.findViewById(R.id.bgWorld);
+        bgAll = view.findViewById(R.id.bgAll);
+        bgCriminal = view.findViewById(R.id.bgCriminal);
+        bgPolitics= view.findViewById(R.id.bgPolitics);
+        bgScience= view.findViewById(R.id.bgScience);
+        bgSport=view.findViewById(R.id.bgSport);
 
-        clWorld.setOnClickListener(v -> filterByCategory("#World"));
-        clScience.setOnClickListener(v -> filterByCategory("#Science"));
-        clSport.setOnClickListener(v -> filterByCategory("#Sports"));
-        clCriminal.setOnClickListener(v -> filterByCategory("#Criminal"));
-        clPolitics.setOnClickListener(v -> filterByCategory("#Politics"));
-        clAll.setOnClickListener(v -> filterByCategory("All"));
+
+
+        bgAll.setOnClickListener(v -> onCategoryClicked(bgAll ,"All"));
+        bgWorld.setOnClickListener(v -> onCategoryClicked(bgWorld,"#World"));
+        bgScience.setOnClickListener(v -> onCategoryClicked(bgScience, "#Science"));
+        bgCriminal.setOnClickListener(v -> onCategoryClicked(bgCriminal ,"#Criminal"));
+        bgPolitics.setOnClickListener(v -> onCategoryClicked(bgPolitics,"#Politics"));
+        bgSport.setOnClickListener(v -> onCategoryClicked(bgSport, "#Sports"));
 
         return view;
 
     }
+
+
+
+
+    private void onCategoryClicked(CardView clickedCategory,String category){
+        resetCategoryBackground();
+        clickedCategory.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.hijau_tua));
+        filterByCategory(category);
+    }
+
+    private void resetCategoryBackground() {
+        bgAll.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+        bgSport.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+        bgWorld.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+        bgPolitics.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+        bgCriminal.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+        bgScience.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
+    }
+
     private void initView(){
         if (recycleViewNews == null) {
             return;
