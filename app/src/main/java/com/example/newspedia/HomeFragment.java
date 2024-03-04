@@ -1,5 +1,6 @@
 package com.example.newspedia;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.newspedia.adapter.newsListAdapter;
 import com.example.newspedia.modelItem.itemNews;
@@ -29,6 +31,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapterNewsList;
     private ConstraintLayout clWorld,clScience, clSport,clPolitics,clCriminal,clAll;
     private CardView bgWorld,bgScience,bgSport,bgPolitics,bgCriminal,bgAll;
+    private TextView textWorld,textScience,textSport,textPolitics,textCriminal,textAll;
     private RecyclerView recycleViewNews;
     private ArrayList<modelNews> newsList;
     // TODO: Rename parameter arguments, choose names that match
@@ -71,6 +74,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,7 +89,12 @@ public class HomeFragment extends Fragment {
         clCriminal = view.findViewById(R.id.clCriminal);
         clPolitics = view.findViewById(R.id.clPolitic);
         clAll = view.findViewById(R.id.clAll);
-
+        textAll = view.findViewById(R.id.textAll);
+        textWorld = view.findViewById(R.id.textWorld);
+        textCriminal = view.findViewById(R.id.textCriminal);
+        textPolitics= view.findViewById(R.id.textPolitics);
+        textSport = view.findViewById(R.id.textSport);
+        textScience=view.findViewById(R.id.textScience);
         bgWorld = view.findViewById(R.id.bgWorld);
         bgAll = view.findViewById(R.id.bgAll);
         bgCriminal = view.findViewById(R.id.bgCriminal);
@@ -112,10 +121,17 @@ public class HomeFragment extends Fragment {
     private void onCategoryClicked(CardView clickedCategory,String category){
         resetCategoryBackground();
         clickedCategory.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.hijau_tua));
+        textSport.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
+        textCriminal.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
+        textPolitics.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
+        textWorld.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
+        textAll.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
+        textScience.setTextColor(ContextCompat.getColor(requireContext(),R.color.black));
         filterByCategory(category);
     }
 
     private void resetCategoryBackground() {
+
         bgAll.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
         bgSport.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));
         bgWorld.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.grey_card));

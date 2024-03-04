@@ -132,7 +132,7 @@
                                     android:scrollIndicators="bottom|none">
 
                                     <TextView
-                                        android:id="@+id/textView55"
+                                        android:id="@+id/textCriminal"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
@@ -173,7 +173,7 @@
                                     android:scrollIndicators="bottom|none">
 
                                     <TextView
-                                        android:id="@+id/textView51"
+                                        android:id="@+id/textSport"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
@@ -213,7 +213,7 @@
                                     android:layout_height="match_parent">
 
                                     <TextView
-                                        android:id="@+id/textView30"
+                                        android:id="@+id/textScience"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
@@ -252,7 +252,7 @@
                                     android:layout_height="match_parent">
 
                                     <TextView
-                                        android:id="@+id/textView16"
+                                        android:id="@+id/textPolitics"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
@@ -293,7 +293,7 @@
                                     android:scrollIndicators="none">
 
                                     <TextView
-                                        android:id="@+id/textView13"
+                                        android:id="@+id/textWorld"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
@@ -334,7 +334,7 @@
                                     android:layout_height="match_parent">
 
                                     <TextView
-                                        android:id="@+id/textView100"
+                                        android:id="@+id/textAll"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/glacial_reguler"
