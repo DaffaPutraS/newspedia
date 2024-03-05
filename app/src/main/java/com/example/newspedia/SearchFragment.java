@@ -3,10 +3,23 @@ package com.example.newspedia;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.newspedia.adapter.searchListAdapter;
+import com.example.newspedia.modelItem.itemNews;
+import com.example.newspedia.modelItem.modelNews;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +32,10 @@ public class SearchFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private RecyclerView.Adapter adapterSearchList;
+    private RecyclerView recycleSearch;
+    private EditText inputSearch;
+    private ArrayList<modelNews> newsList;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -59,6 +75,71 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search,container,false);
+       recycleSearch = view.findViewById(R.id.recycleSearch);
+
+       inputSearch = view.findViewById(R.id.inputSearch);
+        initView();
+        return view;
+    }
+
+    private void initView() {
+        if (recycleSearch == null) {
+            return;
+        }
+        recycleSearch.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        newsList = new ArrayList<>();
+        for (int i = 0; i< itemNews.posterItem.length;i++){
+            modelNews news = new modelNews(
+                    itemNews.judulItem[i],
+                    itemNews.KategoriItem[i],
+                    itemNews.detailItem[i],
+                    itemNews.tanggalItem[i],
+                    itemNews.posterItem[i]
+            );
+            newsList.add(news);
+        }
+        ArrayList<modelNews> simplifiedNewsList = new ArrayList<>();
+        for (modelNews news : newsList) {
+            simplifiedNewsList.add(new modelNews(news.getName(), news.getCategory(), news.getDetail(), news.getDate(), news.getPoster()));
+        }
+        adapterSearchList = new searchListAdapter(newsList);
+
+
+        recycleSearch.setAdapter(adapterSearchList);
+
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // kosongkan metode ini
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // panggil metode untuk melakukan pencarian
+                performSearch(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // kosongkan metode ini
+            }
+        });
+    }
+    private void performSearch(String query) {
+        ArrayList<modelNews> filteredList = new ArrayList<>();
+        for (modelNews news : newsList) {
+            // Jika judul berisi teks pencarian, tambahkan ke daftar hasil pencarian
+            if (news.getName().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(news);
+            }
+        }
+        if (filteredList.isEmpty()){
+            Toast.makeText(requireContext(), "Berita tidak ditemukan", Toast.LENGTH_SHORT).show();
+        }
+        // Buat adapter baru dengan daftar hasil pencarian yang difilter
+        adapterSearchList = new searchListAdapter(filteredList);
+        // Atur adapter ke RecyclerView
+        recycleSearch.setAdapter(adapterSearchList);
     }
 }
