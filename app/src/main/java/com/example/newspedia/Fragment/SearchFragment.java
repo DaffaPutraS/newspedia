@@ -1,10 +1,9 @@
-package com.example.newspedia;
+package com.example.newspedia.Fragment;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.newspedia.R;
 import com.example.newspedia.adapter.searchListAdapter;
 import com.example.newspedia.modelItem.itemNews;
 import com.example.newspedia.modelItem.modelNews;

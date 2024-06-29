@@ -1,9 +1,11 @@
-package com.example.newspedia;
+package com.example.newspedia.Fragment;
+
+import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -11,14 +13,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.newspedia.R;
 import com.example.newspedia.adapter.newsListAdapter;
 import com.example.newspedia.modelItem.itemNews;
 import com.example.newspedia.modelItem.modelNews;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -42,7 +53,9 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference;
+    private TextView textName;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -81,7 +94,13 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recycleViewNews = view.findViewById(R.id.recycleViewNews1);
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            Log.e(TAG, "User is not logged in");
+            return view;
+        }
+        textName = view.findViewById(R.id.tvUsernameP);
+        displayUser();
         initView();
         clWorld = view.findViewById(R.id.clWorld);
         clScience = view.findViewById(R.id.clScience);
@@ -92,7 +111,7 @@ public class HomeFragment extends Fragment {
         textAll = view.findViewById(R.id.textAll);
         textWorld = view.findViewById(R.id.textWorld);
         textCriminal = view.findViewById(R.id.textCriminal);
-        textPolitics= view.findViewById(R.id.textPolitics);
+        textPolitics= view.findViewById(R.id.tvName);
         textSport = view.findViewById(R.id.textSport);
         textScience=view.findViewById(R.id.textScience);
         bgWorld = view.findViewById(R.id.bgWorld);
@@ -115,7 +134,40 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void displayUser() {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null) {
+            return;
+        }
 
+        String displayName = firebaseUser.getDisplayName();
+        if (displayName != null) {
+            textName.setText(displayName);
+        } else {
+            textName.setText("User");
+        }
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(firebaseUser.getUid());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String username = snapshot.child("username").getValue(String.class);
+                    if (username != null && !username.isEmpty()) {
+                        textName.setText("Welcome, "+username);
+                    } else {
+                        textName.setText("No username found");
+                    }
+                } else {
+                    textName.setText("Snapshot does not exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "DatabaseError: " + error.getMessage());
+            }
+        });
+    }
 
 
     private void onCategoryClicked(CardView clickedCategory,String category){
