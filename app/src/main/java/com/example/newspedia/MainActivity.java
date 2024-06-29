@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.newspedia.Fragment.BookmarkFragment;
 import com.example.newspedia.Fragment.HomeFragment;
 import com.example.newspedia.Fragment.ProfileFragment;
+//import com.example.newspedia.Fragment.SearchFragment;
 import com.example.newspedia.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

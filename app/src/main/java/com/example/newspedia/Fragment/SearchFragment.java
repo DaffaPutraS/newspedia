@@ -1,13 +1,18 @@
 package com.example.newspedia.Fragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +20,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.newspedia.R;
+//import com.example.newspedia.adapter.searchListAdapter;
 import com.example.newspedia.adapter.searchListAdapter;
 import com.example.newspedia.modelItem.itemNews;
 import com.example.newspedia.modelItem.modelNews;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -75,38 +86,56 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search,container,false);
-       recycleSearch = view.findViewById(R.id.recycleSearch);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-       inputSearch = view.findViewById(R.id.inputSearch);
+        // Initialize the RecyclerView
+        recycleSearch = view.findViewById(R.id.recycleSearch);
+        recycleSearch.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+
+        // Initialize the search input field
+        inputSearch = view.findViewById(R.id.inputSearch);
+
+        // Initialize the news list and adapter
+        newsList = new ArrayList<>();
+        adapterSearchList = new searchListAdapter(newsList);
+        recycleSearch.setAdapter(adapterSearchList);
+
+        // Fetch the search data
+        fetchSearch();
         initView();
         return view;
+    }
+    private void fetchSearch() {
+        DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference().child("NewsList");
+        newsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                newsList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    modelNews news = snapshot.getValue(modelNews.class);
+                    if (news != null) {
+                        newsList.add(news);
+                    } else {
+                        Log.e("SearchFragment", "modelNews is null");
+                    }
+                }
+                adapterSearchList.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                Log.d("SearchFragment", "Data loaded: " + newsList.size() + " items");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("SearchFragment", "DatabaseError: " + databaseError.getMessage());
+            }
+        });
     }
 
     private void initView() {
         if (recycleSearch == null) {
             return;
         }
-        recycleSearch.setLayoutManager(new GridLayoutManager(requireContext(), 2));
-        newsList = new ArrayList<>();
-        for (int i = 0; i< itemNews.posterItem.length;i++){
-            modelNews news = new modelNews(
-                    itemNews.judulItem[i],
-                    itemNews.KategoriItem[i],
-                    itemNews.detailItem[i],
-                    itemNews.tanggalItem[i],
-                    itemNews.posterItem[i]
-            );
-            newsList.add(news);
-        }
-        ArrayList<modelNews> simplifiedNewsList = new ArrayList<>();
-        for (modelNews news : newsList) {
-            simplifiedNewsList.add(new modelNews(news.getName(), news.getCategory(), news.getDetail(), news.getDate(), news.getPoster()));
-        }
-        adapterSearchList = new searchListAdapter(newsList);
 
 
-        recycleSearch.setAdapter(adapterSearchList);
 
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,7 +159,7 @@ public class SearchFragment extends Fragment {
         ArrayList<modelNews> filteredList = new ArrayList<>();
         for (modelNews news : newsList) {
             // Jika judul berisi teks pencarian, tambahkan ke daftar hasil pencarian
-            if (news.getName().toLowerCase().contains(query.toLowerCase())) {
+            if (news.getNameNews().toLowerCase().contains(query.toLowerCase())) {
                 filteredList.add(news);
             }
         }
