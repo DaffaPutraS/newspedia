@@ -6,9 +6,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +17,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.newspedia.R;
-import com.example.newspedia.adapter.categoryListAdapter;
 import com.example.newspedia.adapter.newsListAdapter;
-import com.example.newspedia.modelItem.modelCategory;
+
 import com.example.newspedia.modelItem.modelNews;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +32,6 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     private RecyclerView.Adapter adapterNewsList;
-    private ConstraintLayout clWorld, clScience, clSport, clPolitics, clCriminal, clAll;
 
     private RecyclerView recycleViewNews;
     private ArrayList<modelNews> newsList;
@@ -46,8 +41,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     private RecyclerView recycleCategory;
 
-    private categoryListAdapter adapter;
-    private ArrayList<modelCategory> items;
+
+
 
     private FirebaseUser firebaseUser;
     private DatabaseReference databaseReference;
@@ -90,11 +85,11 @@ public class HomeFragment extends Fragment {
         }
         textName = view.findViewById(R.id.tvUsernameP);
         recycleViewNews = view.findViewById(R.id.recycleViewNews1);
-        recycleCategory = view.findViewById(R.id.rvCategory);
+
 
         displayUser();
         fetchNews();
-        fetchCategories();
+
 
         // Set up the news RecyclerView
         recycleViewNews.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
@@ -103,38 +98,13 @@ public class HomeFragment extends Fragment {
         recycleViewNews.setAdapter(adapterNewsList);
 
         // Set up the category RecyclerView
-        items = new ArrayList<>();
-        recycleCategory.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        adapter = new categoryListAdapter(getContext(), items, this);
-        recycleCategory.setAdapter(adapter);
+
+
 
         return view;
     }
 
-    private void fetchCategories() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("category");
-        if (databaseReference != null) {
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    items.clear(); // Clear the existing items
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        modelCategory category = snapshot.getValue(modelCategory.class);
-                        items.add(category);
-                        Log.d("FirebaseData", "Category: " + category.getNameCategory()); // Log the category name
-                    }
-                    adapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.e(TAG, "DatabaseError: " + databaseError.getMessage());
-                }
-            });
-        } else {
-            Log.e(TAG, "databaseReference is null");
-        }
-    }
 
     private void fetchNews() {
         DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference().child("NewsList");

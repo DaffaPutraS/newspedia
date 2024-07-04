@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.newspedia.adapter.suggestionListAdapter;
-import com.example.newspedia.modelItem.modelBookmark;
 import com.example.newspedia.modelItem.modelNews;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +31,6 @@ public class DetailActivity extends AppCompatActivity {
     private RecyclerView recycleViewSuggestion;
     private ConstraintLayout backDetailBtn;
     private modelNews object;
-    private modelBookmark objectBookmark;
     private DatabaseReference bookmarksRef;
     private TextView judulTextView, kategoriTextView, detailTextView, tanggalTextView;
     private ImageView posterImageView, bookmarkFav;
@@ -66,20 +64,52 @@ public class DetailActivity extends AppCompatActivity {
         backDetailBtn.setOnClickListener(view -> onBackPressed());
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        getBundle();
+
+        if (currentUser != null && newsKey != null) {
+            checkBookmarkStatus(newsKey, currentUser.getUid());
+        }
+
+        fetchSuggestedNews();
 
         bookmarkFav.setOnClickListener(view -> {
-            if (currentUser != null && object != null) {
-                toggleBookmark(object.getNewsId(), currentUser.getUid());
-            } else if (currentUser != null) {
-                Toast.makeText(DetailActivity.this,"User ada bang" + currentUser,Toast.LENGTH_SHORT).show();
+            if (currentUser != null && newsKey != null) {
+                toggleBookmark(newsKey, currentUser.getUid());
             } else {
-                Toast.makeText(DetailActivity.this, "Unable to bookmark. User or News is null.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this, "Unable to bookmark. User or NewsKey is null.", Toast.LENGTH_SHORT).show();
+                if (currentUser != null) {
+                    Log.e("DetailActivity", "Current User ID: " + currentUser.getUid());
+                }
+                Log.e("DetailActivity", "NewsKey: " + newsKey);
             }
         });
-
-        getBundle();
     }
+    private void fetchSuggestedNews() {
+        DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("NewsList");
+        newsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                newsList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    modelNews news = snapshot.getValue(modelNews.class);
+                    if (news != null) {
+                        String key = snapshot.getKey();
+                        Log.d("DetailActivity", "News key: " + key);
+                        if (key != null) {
+                            news.setNewsId(key); // Set the key as newsId for convenience
+                            newsList.add(news);
+                        }
+                    }
+                }
+                adapterNewsSuggestionList.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("DetailActivity", "Failed to fetch news suggestions: " + databaseError.getMessage());
+            }
+        });
+    }
     private void getBundle() {
         object = (modelNews) getIntent().getSerializableExtra("object");
         newsKey = getIntent().getStringExtra("newsKey");
@@ -93,9 +123,50 @@ public class DetailActivity extends AppCompatActivity {
             kategoriTextView.setText(object.getCategory());
             detailTextView.setText(object.getDescription());
             tanggalTextView.setText(object.getDatePublish());
+
+            fetchNewsKey();
         } else {
             Log.e("DetailActivity", "Object is null");
         }
+
+        // Log to verify the newsKey
+        Log.d("DetailActivity", "Received newsKey: " + newsKey);
+    }
+
+    private void fetchNewsKey() {
+        // Assuming you're fetching the newsKey from the database using object.getNewsId()
+        DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("NewsList").child(object.getNewsId());
+        newsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                newsKey = snapshot.getKey();
+                Log.d("DetailActivity", "Fetched newsKey: " + newsKey);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("DetailActivity", "Failed to fetch newsKey: " + error.getMessage());
+            }
+        });
+    }
+    private void checkBookmarkStatus(String newsId, String userId) {
+        DatabaseReference bookmarkRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("bookmarks").child(newsId);
+        bookmarkRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean isBookmarked = snapshot.getValue(Boolean.class);
+                if (isBookmarked != null && isBookmarked) {
+                    bookmarkFav.setImageResource(R.drawable.ic_bookmarked); // Change to your bookmarked icon
+                } else {
+                    bookmarkFav.setImageResource(R.drawable.ic_bookmark); // Change to your unbookmarked icon
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("DetailActivity", "Failed to check bookmark status: " + error.getMessage());
+            }
+        });
     }
 
     private void toggleBookmark(String newsKey, String userId) {
@@ -107,16 +178,20 @@ public class DetailActivity extends AppCompatActivity {
                     // Bookmark exists, remove it
                     userBookmarksRef.removeValue().addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            bookmarkFav.setImageResource(R.drawable.ic_bookmark);
                             Toast.makeText(DetailActivity.this, "Bookmark removed successfully!", Toast.LENGTH_SHORT).show();
+                            checkBookmarkStatus(newsKey, userId); // Refresh bookmark status
                         } else {
                             Toast.makeText(DetailActivity.this, "Failed to remove bookmark.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
                     // Bookmark doesn't exist, add it
-                    userBookmarksRef.setValue(object).addOnCompleteListener(task -> {
+                    userBookmarksRef.setValue(true).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            bookmarkFav.setImageResource(R.drawable.ic_bookmarked);
                             Toast.makeText(DetailActivity.this, "Bookmark added successfully!", Toast.LENGTH_SHORT).show();
+                            checkBookmarkStatus(newsKey, userId); // Refresh bookmark status
                         } else {
                             Toast.makeText(DetailActivity.this, "Failed to add bookmark.", Toast.LENGTH_SHORT).show();
                         }
@@ -130,4 +205,5 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
 }

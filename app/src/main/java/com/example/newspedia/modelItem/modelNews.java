@@ -2,25 +2,24 @@ package com.example.newspedia.modelItem;
 
 import java.io.Serializable;
 
-public class modelNews implements Serializable {
+public class modelNews implements Serializable{
+    private String newsId;
+    private String category;
+    private String datePublish;
+    private String description;
+    private String imageNews;
+    private String nameNews;
 
+    // Default constructor required for calls to DataSnapshot.getValue(modelNews.class)
+    public modelNews() {}
 
-    private String nameNews,category,datePublish,description,imageNews,newsId;
-
+    // Getters and setters
     public String getNewsId() {
         return newsId;
     }
 
     public void setNewsId(String newsId) {
         this.newsId = newsId;
-    }
-
-    public String getNameNews() {
-        return nameNews;
-    }
-
-    public void setNameNews(String nameNews) {
-        this.nameNews = nameNews;
     }
 
     public String getCategory() {
@@ -55,8 +54,11 @@ public class modelNews implements Serializable {
         this.imageNews = imageNews;
     }
 
-    public modelNews(){
-
+    public String getNameNews() {
+        return nameNews;
     }
 
+    public void setNameNews(String nameNews) {
+        this.nameNews = nameNews;
+    }
 }
