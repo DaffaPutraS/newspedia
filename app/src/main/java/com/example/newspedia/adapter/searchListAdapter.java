@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.newspedia.DetailActivity;
 import com.example.newspedia.R;
 import com.example.newspedia.modelItem.modelNews;
@@ -24,6 +25,7 @@ public class searchListAdapter extends RecyclerView.Adapter<searchListAdapter.Vi
 
     public searchListAdapter(ArrayList<modelNews> items) {
         this.items = items;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -35,20 +37,19 @@ public class searchListAdapter extends RecyclerView.Adapter<searchListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull searchListAdapter.ViewHolder holder, int position) {
-        holder.judulSearch.setText(items.get(position).getName());
-        String posterResourceName = items.get(position).getPoster();
-        int drawableResourceId =context.getResources().getIdentifier(posterResourceName,"drawable",context.getPackageName());
-        holder.imageSearch.setImageResource(drawableResourceId);
-        holder.categorySearch.setText(items.get(position).getCategory());
+        modelNews news = items.get(position);
+        holder.judulSearch.setText(items.get(position).getNameNews());
+        String posterResourceUrl = items.get(position).getImageNews();
+        Glide.with(context)
+                .load(posterResourceUrl)
+                .into(holder.imageSearch);
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("judul",items.get(position).getName());
-            intent.putExtra("kategori",items.get(position).getCategory());
-            intent.putExtra("Detail",items.get(position).getDetail());
-            intent.putExtra("Date",items.get(position).getDate());
-            intent.putExtra("poster",items.get(position).getPoster());
+            intent.putExtra("object", news);
             context.startActivity(intent);
         });
+        holder.categorySearch.setText(items.get(position).getCategory());
+
     }
 
     @Override

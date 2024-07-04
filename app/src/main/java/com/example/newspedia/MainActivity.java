@@ -1,20 +1,20 @@
 package com.example.newspedia;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
-import com.example.newspedia.databinding.ActivityMainBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.example.newspedia.Fragment.BookmarkFragment;
+import com.example.newspedia.Fragment.HomeFragment;
+import com.example.newspedia.Fragment.ProfileFragment;
+//import com.example.newspedia.Fragment.SearchFragment;
+import com.example.newspedia.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
