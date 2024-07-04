@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterNewsSuggestionList;
@@ -36,7 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView posterImageView, bookmarkFav;
     private ArrayList<modelNews> newsList;
     private FirebaseUser currentUser;
-
+    private String newsCategory;
     private String newsKey;
 
     @Override
@@ -66,12 +68,6 @@ public class DetailActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         getBundle();
 
-        if (currentUser != null && newsKey != null) {
-            checkBookmarkStatus(newsKey, currentUser.getUid());
-        }
-
-        fetchSuggestedNews();
-
         bookmarkFav.setOnClickListener(view -> {
             if (currentUser != null && newsKey != null) {
                 toggleBookmark(newsKey, currentUser.getUid());
@@ -84,23 +80,36 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-    private void fetchSuggestedNews() {
+
+    private void fetchSuggestedNews(String currentNewsId, String currentCategory) {
+        if (currentNewsId == null || currentCategory == null) {
+            Log.e("DetailActivity", "Current news ID or category is null");
+            return;
+        }
+
         DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("NewsList");
         newsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                newsList.clear();
+                ArrayList<modelNews> filteredNewsList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     modelNews news = snapshot.getValue(modelNews.class);
                     if (news != null) {
                         String key = snapshot.getKey();
-                        Log.d("DetailActivity", "News key: " + key);
-                        if (key != null) {
+                        if (key != null && !key.equals(currentNewsId) && currentCategory.equals(news.getCategory())) {
                             news.setNewsId(key); // Set the key as newsId for convenience
-                            newsList.add(news);
+                            filteredNewsList.add(news);
                         }
                     }
                 }
+
+                // Shuffle the list and get up to 3 items
+                Collections.shuffle(filteredNewsList);
+                List<modelNews> suggestedNewsList = filteredNewsList.size() > 3 ? filteredNewsList.subList(0, 3) : filteredNewsList;
+
+                // Update the adapter with the suggested news
+                newsList.clear();
+                newsList.addAll(suggestedNewsList);
                 adapterNewsSuggestionList.notifyDataSetChanged();
             }
 
@@ -110,6 +119,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
     private void getBundle() {
         object = (modelNews) getIntent().getSerializableExtra("object");
         newsKey = getIntent().getStringExtra("newsKey");
@@ -124,6 +134,7 @@ public class DetailActivity extends AppCompatActivity {
             detailTextView.setText(object.getDescription());
             tanggalTextView.setText(object.getDatePublish());
 
+            newsCategory = object.getCategory(); // Ensure newsCategory is set
             fetchNewsKey();
         } else {
             Log.e("DetailActivity", "Object is null");
@@ -141,6 +152,9 @@ public class DetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 newsKey = snapshot.getKey();
                 Log.d("DetailActivity", "Fetched newsKey: " + newsKey);
+
+                // Call fetchSuggestedNews after newsKey and newsCategory are initialized
+                fetchSuggestedNews(newsKey, newsCategory);
             }
 
             @Override
@@ -149,6 +163,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
     private void checkBookmarkStatus(String newsId, String userId) {
         DatabaseReference bookmarkRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("bookmarks").child(newsId);
         bookmarkRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -205,5 +220,4 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-
 }
