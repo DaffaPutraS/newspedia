@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void register(String username, String email, String password) {
-        Drawable defaultIcon = getResources().getDrawable(R.drawable.minilogo);
+        Drawable defaultIcon = getResources().getDrawable(R.drawable.img_user2);
         Bitmap bitmap = ((BitmapDrawable) defaultIcon).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

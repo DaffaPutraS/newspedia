@@ -1,10 +1,17 @@
 package com.example.newspedia.modelItem;
 
+import java.util.ArrayList;
+
 public class UserDomain {
     private String userId;
     private String email;
-
     private String username;
+    private ArrayList<modelNews> bookmarks;
+
+    public UserDomain() {
+        // Empty constructor needed for Firebase
+        bookmarks = new ArrayList<>();
+    }
 
     public String getUsername() {
         return username;
@@ -28,9 +35,5 @@ public class UserDomain {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public UserDomain() {
-        // Empty constructor needed for Firebase
     }
 }

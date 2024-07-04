@@ -22,6 +22,7 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.example.newspedia.AboutActivity;
+import com.example.newspedia.ChangePassActivity;
 import com.example.newspedia.ContactUsActivity;
 import com.example.newspedia.FaqActivity;
 import com.example.newspedia.LoginActivity;
@@ -101,10 +102,20 @@ public class ProfileFragment extends Fragment {
         CardView cardContactUs = view.findViewById(R.id.cardContactUs);
         CardView cardLogout = view.findViewById(R.id.CardLogout);
         CardView cardPicture = view.findViewById(R.id.cardChangePicture);
+        CardView CardChangePassword = view.findViewById(R.id.cardChangePassword);
 
         textName = view.findViewById(R.id.tvName);
         imageProfile = view.findViewById(R.id.ivProfile);
         displayUser();
+
+        CardChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChangePassActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cardLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

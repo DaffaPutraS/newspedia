@@ -358,9 +358,10 @@
 
             <ImageView
                 android:id="@+id/ivProfile"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:src="@drawable/img_user" />
         </androidx.cardview.widget.CardView>
 

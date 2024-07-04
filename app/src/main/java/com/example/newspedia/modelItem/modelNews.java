@@ -5,8 +5,15 @@ import java.io.Serializable;
 public class modelNews implements Serializable {
 
 
-    private String nameNews,category,datePublish,description,imageNews;
+    private String nameNews,category,datePublish,description,imageNews,newsId;
 
+    public String getNewsId() {
+        return newsId;
+    }
+
+    public void setNewsId(String newsId) {
+        this.newsId = newsId;
+    }
 
     public String getNameNews() {
         return nameNews;

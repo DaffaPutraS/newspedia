@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.example.newspedia.R;
 //import com.example.newspedia.adapter.searchListAdapter;
 import com.example.newspedia.adapter.searchListAdapter;
-import com.example.newspedia.modelItem.itemNews;
 import com.example.newspedia.modelItem.modelNews;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
