@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailTxt,passTxt;
-    private TextView signUpTxt;
+    private TextView signUpTxt , forgotPasswordTxt;
     private Button loginBtn;
     private FirebaseDatabase firebaseDatabase;
 
@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
             }else {
                 Toast.makeText(this, "Isi yang bener bang", Toast.LENGTH_SHORT).show();
             }
+        });
+        forgotPasswordTxt.setOnClickListener(view -> {
+            startActivity(new Intent (this, ForgotPassActivity.class));
         });
     }
 
@@ -86,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
     private void initView(){
+        forgotPasswordTxt = findViewById(R.id.btnForgotPassword);
         signUpTxt = findViewById(R.id.goSignUp);
         emailTxt  = findViewById(R.id.emailRegisterInputText);
         passTxt = findViewById(R.id.passRegisterInputText);
