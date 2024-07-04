@@ -90,6 +90,7 @@
             android:layout_marginTop="60dp"
             android:text="Saved News"
             android:textSize="30sp"
+            android:textColor="@color/white_samar"
             android:fontFamily="@font/glacial_blod"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
