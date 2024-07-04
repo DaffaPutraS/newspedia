@@ -156,9 +156,9 @@ public class DetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean isBookmarked = snapshot.getValue(Boolean.class);
                 if (isBookmarked != null && isBookmarked) {
-                    bookmarkFav.setImageResource(R.drawable.ic_bookmarked); // Change to your bookmarked icon
+                    bookmarkFav.setImageResource(R.drawable.ic_bokmarked2); // Change to your bookmarked icon
                 } else {
-                    bookmarkFav.setImageResource(R.drawable.ic_bookmark); // Change to your unbookmarked icon
+                    bookmarkFav.setImageResource(R.drawable.bookmark2); // Change to your unbookmarked icon
                 }
             }
 
@@ -178,7 +178,7 @@ public class DetailActivity extends AppCompatActivity {
                     // Bookmark exists, remove it
                     userBookmarksRef.removeValue().addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            bookmarkFav.setImageResource(R.drawable.ic_bookmark);
+                            bookmarkFav.setImageResource(R.drawable.bookmark2);
                             Toast.makeText(DetailActivity.this, "Bookmark removed successfully!", Toast.LENGTH_SHORT).show();
                             checkBookmarkStatus(newsKey, userId); // Refresh bookmark status
                         } else {
@@ -189,7 +189,7 @@ public class DetailActivity extends AppCompatActivity {
                     // Bookmark doesn't exist, add it
                     userBookmarksRef.setValue(true).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            bookmarkFav.setImageResource(R.drawable.ic_bookmarked);
+                            bookmarkFav.setImageResource(R.drawable.ic_bokmarked2);
                             Toast.makeText(DetailActivity.this, "Bookmark added successfully!", Toast.LENGTH_SHORT).show();
                             checkBookmarkStatus(newsKey, userId); // Refresh bookmark status
                         } else {
