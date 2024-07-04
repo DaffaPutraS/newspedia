@@ -1,6 +1,7 @@
 package com.example.newspedia.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.newspedia.DetailActivity;
 import com.example.newspedia.R;
 import com.example.newspedia.modelItem.modelNews;
 
 import java.util.ArrayList;
 
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHolder> {
-    private ArrayList<modelNews> bookmarkList;
+    private ArrayList<modelNews> newsList;
     private Context context;
 
-    public BookmarkAdapter(ArrayList<modelNews> bookmarkList, Context context) {
-        this.bookmarkList = bookmarkList;
+    public BookmarkAdapter(ArrayList<modelNews> newsList, Context context) {
+        this.newsList = newsList;
         this.context = context;
     }
 
@@ -34,19 +36,24 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        modelNews bookmark = bookmarkList.get(position);
+        modelNews news = newsList.get(position);
 
-        holder.judulTextView.setText(bookmark.getNameNews());
-        String posterResourceUrl = bookmarkList.get(position).getImageNews();
+        holder.judulTextView.setText(news.getNameNews());
+        String posterResourceUrl = news.getImageNews();
         Glide.with(context)
                 .load(posterResourceUrl)
                 .centerCrop()
                 .into(holder.posterImageView);
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object", news);
+            context.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return bookmarkList.size();
+        return newsList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
