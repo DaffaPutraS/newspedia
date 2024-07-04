@@ -114,7 +114,7 @@ public class DetailActivity extends AppCompatActivity {
                     });
                 } else {
                     // Bookmark doesn't exist, add it
-                    userBookmarksRef.setValue(object.getNewsId()).addOnCompleteListener(task -> {
+                    userBookmarksRef.setValue(object).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(DetailActivity.this, "Bookmark added successfully!", Toast.LENGTH_SHORT).show();
                         } else {
