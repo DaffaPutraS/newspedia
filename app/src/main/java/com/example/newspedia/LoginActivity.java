@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             if (emailTxt.getText().length()>0 && passTxt.getText().length()>0){
                 if (emailTxt.getText().toString().equals("admin")&& passTxt.getText().toString().equals("admin")){
                     startActivity(new Intent(this, MainActivity.class));
-                    Toast.makeText(this, "Selamat Datang", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Selamat Datang Newspedia", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(this, "Email dan Password Salah", Toast.LENGTH_SHORT).show();
                 }
