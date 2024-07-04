@@ -41,10 +41,10 @@
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emailRegisterInputText3" />
+                    app:layout_constraintTop_toBottomOf="@+id/inputDescriptionReview" />
 
                 <EditText
-                    android:id="@+id/emailRegisterInputText3"
+                    android:id="@+id/inputDescriptionReview"
                     android:layout_width="288dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
