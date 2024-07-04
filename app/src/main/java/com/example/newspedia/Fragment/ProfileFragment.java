@@ -269,7 +269,7 @@ public class ProfileFragment extends Fragment {
                         textName.setText("No username found");
                     }
                 } else {
-                    textName.setText("Snapshot does not exist");
+                    textName.setText("User not found!!");
                 }
             }
 

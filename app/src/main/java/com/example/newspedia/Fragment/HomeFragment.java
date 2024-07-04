@@ -3,6 +3,7 @@ package com.example.newspedia.Fragment;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.newspedia.LoginActivity;
 import com.example.newspedia.R;
 import com.example.newspedia.adapter.categoryListAdapter;
 import com.example.newspedia.adapter.newsListAdapter;
@@ -181,7 +183,7 @@ public class HomeFragment extends Fragment {
                         textName.setText("No username found");
                     }
                 } else {
-                    textName.setText("Snapshot does not exist");
+                    textName.setText("User not found!!");
                 }
             }
 
