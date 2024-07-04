@@ -152,10 +152,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="FAQ"
+                            android:fontFamily="@font/glacial_reguler"
+                            android:text="Review"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:fontFamily="@font/glacial_reguler"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageFAQ"
                             app:layout_constraintTop_toTopOf="parent" />

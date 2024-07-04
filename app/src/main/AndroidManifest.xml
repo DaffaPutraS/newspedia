@@ -23,7 +23,7 @@
             android:name=".ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".FaqActivity"
+            android:name=".ReviewActivity"
             android:exported="false" />
         <activity
             android:name=".AboutActivity"
