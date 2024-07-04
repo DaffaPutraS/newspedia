@@ -60,7 +60,7 @@ public class ChangePassActivity extends AppCompatActivity {
         cancelBtnPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChangePassActivity.this, ProfileFragment.class);
+               finish();
             }
         });
 
