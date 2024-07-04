@@ -2,6 +2,7 @@ package com.example.newspedia.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.newspedia.DetailActivity;
 import com.example.newspedia.R;
 import com.example.newspedia.modelItem.modelNews;
@@ -23,6 +25,7 @@ public class newsListAdapter extends RecyclerView.Adapter<newsListAdapter.ViewHo
 
     public newsListAdapter(ArrayList<modelNews> items) {
         this.items = items;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,18 +38,17 @@ public class newsListAdapter extends RecyclerView.Adapter<newsListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.judulTxt.setText(items.get(position).getName());
-        String posterResourceName = items.get(position).getPoster();
-        int drawableResourceId = context.getResources().getIdentifier(posterResourceName, "drawable", context.getPackageName());
-        holder.posterImg.setImageResource(drawableResourceId);
+        modelNews news = items.get(position);
 
+        holder.judulTxt.setText(items.get(position).getNameNews());
+        String posterResourceUrl = items.get(position).getImageNews();
+        Glide.with(context)
+                .load(posterResourceUrl)
+                .into(holder.posterImg);
+        Log.d("news", "Binding news: " + news.getNameNews());
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("judul", items.get(position).getName());
-            intent.putExtra("kategori", items.get(position).getCategory());
-            intent.putExtra("Detail", items.get(position).getDetail());
-            intent.putExtra("Date", items.get(position).getDate());
-            intent.putExtra("poster", items.get(position).getPoster());
+            intent.putExtra("object", news);
             context.startActivity(intent);
         });
 

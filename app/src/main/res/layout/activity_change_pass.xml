@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ChangePassActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelBtnChange"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn2"
+        android:fontFamily="@font/glacial_reguler"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonChangePass" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonChangePass"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/btn1"
+        android:fontFamily="@font/glacial_reguler"
+        android:text="Change Password"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newPassTxt" />
+
+    <EditText
+        android:id="@+id/newPassTxt"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/glacial_reguler"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentPassTxt" />
+
+    <EditText
+        android:id="@+id/currentPassTxt"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:fontFamily="@font/glacial_reguler"
+        android:hint="Current Password"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInputEmailChange" />
+
+    <EditText
+        android:id="@+id/userInputEmailChange"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="38dp"
+        android:ems="10"
+        android:fontFamily="@font/glacial_reguler"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#999999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:background="#00000000"
+        android:fontFamily="@font/glacial_blod"
+        android:text="Change Password"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/newsimage" />
+</androidx.constraintlayout.widget.ConstraintLayout>

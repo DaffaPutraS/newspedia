@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_muda"
-    tools:context=".BookmarkFragment">
+    tools:context=".Fragment.BookmarkFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,181 +26,19 @@
                 android:layout_height="590dp"
                 android:background="@color/white_samar" >
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="365dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="15dp"
-                    app:cardCornerRadius="15dp"
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView7">
+                    app:layout_constraintTop_toTopOf="parent" >
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewFav"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white_samar">
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="20dp"
-                            android:text="Hot News"
-                            android:textColor="#ED5A5A"
-                            android:fontFamily="@font/glacial_reguler"
-                            app:layout_constraintStart_toEndOf="@+id/cardView5"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="One Piece 1089: Akhirnya Wujud Gear 6 Luffy Ditampilkan, Gorosei Ketakutan.."
-                            android:textColor="#040404"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/glacial_reguler"
-                            app:layout_constraintStart_toStartOf="@+id/textView22"
-                            app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView5"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_marginStart="18dp"
-                            app:cardCornerRadius="15dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageView15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/world1" />
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView7"
-                    android:layout_width="365dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="15dp"
-                    app:cardCornerRadius="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView1">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white_samar">
-
-                        <TextView
-                            android:id="@+id/hotNews2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="20dp"
-                            android:text="Hot News"
-                            android:textColor="#ED5A5A"
-                            android:fontFamily="@font/glacial_reguler"
-                            app:layout_constraintStart_toEndOf="@+id/cardViewEntertainment"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/desc2"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Gemas! Rayyanza Salah Tingkah Ketemu Gempi"
-                            android:textColor="#040404"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/glacial_reguler"
-                            app:layout_constraintStart_toStartOf="@+id/hotNews2"
-                            app:layout_constraintTop_toBottomOf="@+id/hotNews2" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardViewEntertainment"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_marginStart="18dp"
-                            app:cardCornerRadius="15dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageViewEntertainment"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/enterteinment1" />
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView1"
-                    android:layout_width="365dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="30dp"
-                    app:cardCornerRadius="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white_samar">
-
-                        <TextView
-                            android:id="@+id/hotNews1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="20dp"
-                            android:text="Hot News"
-                            android:textColor="#ED5A5A"
-                            android:fontFamily="@font/glacial_reguler"
-                            app:layout_constraintStart_toEndOf="@+id/cardViewPolitics"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/desc1"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:fontFamily="@font/glacial_reguler"
-                            android:text="Bantahan Jokowi Soal Tudingan Intervensi Kasus e-Ktp Setya Novanto "
-                            android:textColor="#040404"
-                            android:textSize="16sp"
-                            app:layout_constraintStart_toStartOf="@+id/hotNews1"
-                            app:layout_constraintTop_toBottomOf="@+id/hotNews1" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardViewPolitics"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_marginStart="18dp"
-                            app:cardCornerRadius="15dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageViewPolitics"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/politics1" />
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/layout_list_favorite" />
+                </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
