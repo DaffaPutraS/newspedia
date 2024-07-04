@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.newspedia.AboutActivity;
 import com.example.newspedia.ChangePassActivity;
 import com.example.newspedia.ContactUsActivity;
-import com.example.newspedia.FaqActivity;
-import com.example.newspedia.LoginActivity;
+import com.example.newspedia.ReviewActivity;
 import com.example.newspedia.MainActivity;
 import com.example.newspedia.R;
 import com.example.newspedia.Welcome;
@@ -41,7 +39,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -138,7 +135,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Intent untuk membuka FAQActivity
-                Intent intent = new Intent(getActivity(), FaqActivity.class);
+                Intent intent = new Intent(getActivity(), ReviewActivity.class);
                 startActivity(intent);
             }
         });
