@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                     }
                 },
-                3000 // delay in milliseconds (5 seconds)
+                2000 // delay in milliseconds (5 seconds)
         );
 
         // Register fragment lifecycle callback to hide ProgressBar when view is destroyed

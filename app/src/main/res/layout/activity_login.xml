@@ -121,6 +121,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/login_success_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/glacial_blod"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/btnForgotPassword"
+        app:layout_constraintStart_toStartOf="@+id/passRegisterInputText"
+        app:layout_constraintTop_toBottomOf="@+id/btnForgotPassword" />
+    <TextView
         android:id="@+id/btnForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

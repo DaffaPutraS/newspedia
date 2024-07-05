@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,8 +25,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailTxt,passTxt;
     private TextView signUpTxt , forgotPasswordTxt;
     private Button loginBtn;
-    private FirebaseDatabase firebaseDatabase;
 
+    private FirebaseDatabase firebaseDatabase;
+    private TextView loginSuccessMessage;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (snapshot.exists()){
                     mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Berhasil login", Toast.LENGTH_SHORT).show();
                             reload();
                             finish();
                         }else {
@@ -74,7 +79,18 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
+
+        private void showBottomSheetSuccess() {
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(LoginActivity.this);
+            View view1 = LayoutInflater.from(LoginActivity.this).inflate(R.layout.bottom_side_login_success, null);
+            bottomSheetDialog.setContentView(view1);
+            bottomSheetDialog.show();
+
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -89,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
     private void initView(){
+        loginSuccessMessage = findViewById(R.id.login_success_message);
+
         forgotPasswordTxt = findViewById(R.id.btnForgotPassword);
         signUpTxt = findViewById(R.id.goSignUp);
         emailTxt  = findViewById(R.id.emailRegisterInputText);
