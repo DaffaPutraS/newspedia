@@ -79,6 +79,82 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/CategoryTxt">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycleViewSuggestion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="17dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/layout_suggestion_list" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/glacial_blod"
+                            android:text="Suggestion"
+                            android:textColor="#040404"
+                            android:textSize="19sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tanggalTxt" />
+
+                        <TextView
+                            android:id="@+id/tanggalTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="01/01/2024"
+                            android:textColor="#848484"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/detailTxt" />
+
+                        <TextView
+                            android:id="@+id/detailTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="17dp"
+                            android:fontFamily="@font/glacial_reguler"
+                            android:text="Presiden Joko Widodo atau Jokowi buka suara soal cerita eks Ketua Komisi Pemberantasan Korupsi (KPK) Agus Rahardjo yang menyebut kepala negara memanggil Agus ke Istana untuk meminta kasus korupsi e-KTP yang menyeret nama Setya Novanto dihentikan. Jokowi mengklaim tidak ada agenda pertemuan dirinya dengan Agus pada 2017 silam.  “Enggak ada, enggak ada agenda, coba cek lagi aja,” katanya saat ditemui di Istana Negara, Jakarta, pada Senin, 4 Desember 2023.  Jokowi justru mempertanyakan motif Agus Rahardjo yang menyinggung soal Presiden mengintervensi KPK dalam mengusut kasus korupsi e-KTP. Pasalnya Jokowi mengaku, pada 2017 dirinya pernah menyampaikan bahwa Setya Novanto harus mengikuti proses hukum. Ia juga mengatakan proses hukum politikus Golkar tersebut juga terus berjalan dan mendapat vonis 15 tahun."
+                            android:textAlignment="viewStart"
+                            android:textColor="#000000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/JudulTxt" />
+
+                        <TextView
+                            android:id="@+id/JudulTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="17dp"
+                            android:fontFamily="@font/source_serif_reguler"
+                            android:text="Bantahan Jokowi Soal Tudingan Intervensi Kasus e-Ktp Setya Novanto "
+                            android:textColor="#000000"
+                            android:textSize="19sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <ImageView
                         android:id="@+id/bookmarkFav"
                         android:layout_width="wrap_content"
@@ -113,65 +189,6 @@
                         android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="@+id/textView6"
                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-                    <TextView
-                        android:id="@+id/JudulTxt"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:fontFamily="@font/source_serif_reguler"
-                        android:text="Bantahan Jokowi Soal Tudingan Intervensi Kasus e-Ktp Setya Novanto "
-                        android:textColor="#000000"
-                        android:textSize="19sp"
-                        app:layout_constraintStart_toStartOf="@+id/CategoryTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/CategoryTxt" />
-
-                    <TextView
-                        android:id="@+id/detailTxt"
-                        android:layout_width="370dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/glacial_reguler"
-                        android:text="Presiden Joko Widodo atau Jokowi buka suara soal cerita eks Ketua Komisi Pemberantasan Korupsi (KPK) Agus Rahardjo yang menyebut kepala negara memanggil Agus ke Istana untuk meminta kasus korupsi e-KTP yang menyeret nama Setya Novanto dihentikan. Jokowi mengklaim tidak ada agenda pertemuan dirinya dengan Agus pada 2017 silam.  “Enggak ada, enggak ada agenda, coba cek lagi aja,” katanya saat ditemui di Istana Negara, Jakarta, pada Senin, 4 Desember 2023.  Jokowi justru mempertanyakan motif Agus Rahardjo yang menyinggung soal Presiden mengintervensi KPK dalam mengusut kasus korupsi e-KTP. Pasalnya Jokowi mengaku, pada 2017 dirinya pernah menyampaikan bahwa Setya Novanto harus mengikuti proses hukum. Ia juga mengatakan proses hukum politikus Golkar tersebut juga terus berjalan dan mendapat vonis 15 tahun."
-                        android:textAlignment="viewStart"
-                        android:textColor="#000000"
-                        app:layout_constraintStart_toStartOf="@+id/JudulTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/JudulTxt" />
-
-                    <TextView
-                        android:id="@+id/tanggalTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="01/01/2024"
-                        android:textColor="#848484"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="@+id/detailTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/detailTxt" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/glacial_blod"
-                        android:text="Suggestion"
-                        android:textColor="#040404"
-                        android:textSize="19sp"
-                        app:layout_constraintStart_toStartOf="@+id/tanggalTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/tanggalTxt" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycleViewSuggestion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.525"
-                        app:layout_constraintStart_toStartOf="@id/textView12"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12"
-                        tools:itemCount="3"
-                        tools:listitem="@layout/layout_suggestion_list" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

@@ -49,6 +49,7 @@
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="57dp"
+        android:backgroundTint="#A8A8A8"
         android:ems="10"
         android:fontFamily="@font/glacial_reguler"
         android:hint="Email"
@@ -64,6 +65,7 @@
         android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:backgroundTint="#A8A8A8"
         android:ems="10"
         android:fontFamily="@font/glacial_reguler"
         android:hint="Password"
@@ -130,6 +132,7 @@
         app:layout_constraintEnd_toEndOf="@+id/btnForgotPassword"
         app:layout_constraintStart_toStartOf="@+id/passRegisterInputText"
         app:layout_constraintTop_toBottomOf="@+id/btnForgotPassword" />
+
     <TextView
         android:id="@+id/btnForgotPassword"
         android:layout_width="wrap_content"
@@ -137,7 +140,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/glacial_blod"
         android:text="Forgot Password ?"
-        android:textColor="@color/black"
+        android:textColor="#6C6C6C"
         app:layout_constraintEnd_toEndOf="@+id/passRegisterInputText"
         app:layout_constraintTop_toBottomOf="@+id/passRegisterInputText" />
 

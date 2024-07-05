@@ -9,12 +9,12 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="690dp"
-        android:layout_marginBottom="-22dp"
+        android:layout_height="750dp"
+        android:layout_marginTop="15dp"
         app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,52 +28,59 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/sendReviewBtn"
-                    android:layout_width="288dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView5"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:background="@drawable/btn1"
-                    android:fontFamily="@font/glacial_reguler"
-                    android:text="Send Review"
-                    android:textAllCaps="false"
-                    android:textColor="#040404"
-                    android:textSize="16sp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="40dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputDescriptionReview" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView14">
 
-                <EditText
-                    android:id="@+id/inputDescriptionReview"
-                    android:layout_width="288dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:ems="10"
-                    android:fontFamily="@font/glacial_reguler"
-                    android:gravity="top"
-                    android:hint="Description"
-                    android:inputType="textMultiLine"
-                    android:lines="5"
-                    android:textColor="#999999"
-                    android:textColorHint="#999999"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputReviewName" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="20dp">
 
-                <EditText
-                    android:id="@+id/inputReviewName"
-                    android:layout_width="288dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:ems="10"
-                    android:fontFamily="@font/glacial_reguler"
-                    android:hint="Reviewer Name"
-                    android:inputType="text"
-                    android:textColor="#999999"
-                    android:textColorHint="#999999"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                        <EditText
+                            android:id="@+id/inputDescriptionReview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:backgroundTint="#A8A8A8"
+                            android:ems="10"
+                            android:fontFamily="@font/glacial_reguler"
+                            android:gravity="top"
+                            android:hint="Description"
+                            android:inputType="textMultiLine"
+                            android:lines="5"
+                            android:textColor="#999999"
+                            android:textColorHint="#999999"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/inputReviewName" />
+
+                        <EditText
+                            android:id="@+id/inputReviewName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#A8A8A8"
+                            android:ems="10"
+                            android:fontFamily="@font/glacial_reguler"
+                            android:hint="Reviewer Name"
+                            android:inputType="text"
+                            android:textColor="#999999"
+                            android:textColorHint="#999999"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView14"
@@ -87,6 +94,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/sendReviewBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/btn1"
+                    android:fontFamily="@font/glacial_reguler"
+                    android:text="Send Review"
+                    android:textAllCaps="false"
+                    android:textColor="#040404"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView5" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
