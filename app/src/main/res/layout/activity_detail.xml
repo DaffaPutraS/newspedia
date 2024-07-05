@@ -132,6 +132,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="17dp"
+                            android:justificationMode="inter_word"
                             android:fontFamily="@font/glacial_reguler"
                             android:text="Presiden Joko Widodo atau Jokowi buka suara soal cerita eks Ketua Komisi Pemberantasan Korupsi (KPK) Agus Rahardjo yang menyebut kepala negara memanggil Agus ke Istana untuk meminta kasus korupsi e-KTP yang menyeret nama Setya Novanto dihentikan. Jokowi mengklaim tidak ada agenda pertemuan dirinya dengan Agus pada 2017 silam.  “Enggak ada, enggak ada agenda, coba cek lagi aja,” katanya saat ditemui di Istana Negara, Jakarta, pada Senin, 4 Desember 2023.  Jokowi justru mempertanyakan motif Agus Rahardjo yang menyinggung soal Presiden mengintervensi KPK dalam mengusut kasus korupsi e-KTP. Pasalnya Jokowi mengaku, pada 2017 dirinya pernah menyampaikan bahwa Setya Novanto harus mengikuti proses hukum. Ia juga mengatakan proses hukum politikus Golkar tersebut juga terus berjalan dan mendapat vonis 15 tahun."
                             android:textAlignment="viewStart"
